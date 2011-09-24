@@ -1,0 +1,5 @@
+h1. Overview
+
+Tcl package used to convert the textile markup language to HTML.  See "Textism":http://www.textism.com/tools/textile/index.php for a description of the syntax.
+
+Note that this is a work in progress.
