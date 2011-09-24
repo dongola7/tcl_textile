@@ -1,16 +1,15 @@
+h1. Things To Do
+
 * Complete quick block modifiers:
 ** Blockquote: bq.
 ** Footnote: fnn. (including references)
 ** Numeric List: #
 ** Bulleted List: *
-
 * Fix block modifiers so they span multiple lines and stop only when a blank line is
   encountered.
-
 * Add ability to apply attributes
 * Add ability to align blocks
 * Add tables
 * Add links
 * Add images
 * Add acronyms
-
