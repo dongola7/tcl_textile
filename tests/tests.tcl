@@ -28,6 +28,10 @@ namespace eval ::textile::test {
       ::textile::convert_line "This is a paragraph"
    } -result "<p>This is a paragraph</p>"
 
+   test multiline-block-paragraph "paragraph spanning multiple lines" -body {
+      ::textile::convert_line "This is a paragraph\nThis is a continuation"
+   } -result "<p>This is a paragraph<br/>This is a continuation</p>"
+
    test emphasis "emphasis is applied to _ tag" -body {
       ::textile::convert_line "This is _emphasized_"
    } -result "<p>This is <em>emphasized</em></p>"

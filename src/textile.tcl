@@ -11,6 +11,8 @@ proc ::textile::convert_line {line} {
       set line "<p>$line</p>"
    }
 
+   set line [regsub -- {\n} $line {<br/>}]
+
    set line [regsub -- {\_(.+)\_} $line {<em>\1</em>}]
    set line [regsub -- {\*(.+)\*} $line {<strong>\1</strong>}]
    set line [regsub -- {\?\?(.+)\?\?} $line {<cite>\1</cite>}]
