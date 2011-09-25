@@ -2,7 +2,8 @@ package require Tcl 8.5
 package require tcltest 2.0
 eval ::tcltest::configure $argv
 
-source ../src/textile.tcl
+set src_tree [file join [file dirname [info script]] ..]
+source [file join $src_tree src textile.tcl]
 
 namespace eval ::textile::test {
    namespace import ::tcltest::*
