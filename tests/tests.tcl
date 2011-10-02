@@ -36,6 +36,14 @@ namespace eval ::textile::test {
       ::textile::convert "This is a paragraph\nThis is a continuation\n\nThis is another"
    } -result "<p>This is a paragraph<br/>This is a continuation</p><p>This is another</p>"
 
+   test blockquote "blockquote is correctly tagged" -body {
+      ::textile::convert "bq. This is a blockquote"
+   } -result "<blockquote><p>This is a blockquote</p></blockquote>"
+
+   test multiline-blockquote "blockquote spanning multiple lines" -body {
+      ::textile::convert "bq. This is a blockquote\nspanning lines"
+   } -result "<blockquote><p>This is a blockquote<br/>spanning lines</p></blockquote>"
+
    test emphasis "emphasis is applied to _ tag" -body {
       ::textile::convert "This is _emphasized_"
    } -result "<p>This is <em>emphasized</em></p>"

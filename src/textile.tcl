@@ -23,13 +23,16 @@ proc ::textile::convert {text} {
       if {$closing_tag eq ""} {
          if {[regexp -- {^(h[1-6])\.\s*(.+)} $line -> tag line]} {
             append result "<" $tag ">"
-            set closing_tag $tag
+            set closing_tag "</$tag>"
+         } elseif {[regexp -- {^bq\.\s*(.+)} $line -> line]} {
+            append result "<blockquote><p>"
+            set closing_tag "</p></blockquote>"
          } else {
             append result "<p>"
-            set closing_tag "p"
+            set closing_tag "</p>"
          }
       } elseif {$line eq ""} {
-         append result "</" $closing_tag ">"
+         append result $closing_tag
          set closing_tag ""
          continue
       } else {
@@ -40,7 +43,7 @@ proc ::textile::convert {text} {
    }
 
    if {$closing_tag ne ""} {
-      append result "</" $closing_tag ">"
+      append result $closing_tag
    }
 
    return $result
