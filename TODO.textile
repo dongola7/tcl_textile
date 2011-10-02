@@ -1,7 +1,6 @@
 h1. Things To Do
 
 * Complete quick block modifiers:
-** Footnote: fnn. (including references)
 ** Numeric List: #
 ** Bulleted List: *
 * Add ability to apply attributes

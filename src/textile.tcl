@@ -13,6 +13,7 @@ proc ::textile::_apply_phrase_modifiers {line} {
    set line [regsub -- {\^(.+)\^} $line {<sup>\1</sup>}]
    set line [regsub -- {\~(.+)\~} $line {<sub>\1</sub>}]
    set line [regsub -- {\%(.+)\%} $line {<span>\1</span>}]
+   set line [regsub -- {\[([0-9]+)\]} $line {<sup><a href="#fn\1">\1</a></sup>}]
 }
 
 proc ::textile::convert {text} {
@@ -27,6 +28,9 @@ proc ::textile::convert {text} {
          } elseif {[regexp -- {^bq\.\s*(.+)} $line -> line]} {
             append result "<blockquote><p>"
             set closing_tag "</p></blockquote>"
+         } elseif {[regexp -- {fn([0-9]+)\.(.+)} $line -> footnote line]} {
+            append result "<p id=\"fn$footnote\"><sup>$footnote</sup>"
+            set closing_tag "</p>"
          } else {
             append result "<p>"
             set closing_tag "</p>"

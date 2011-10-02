@@ -44,6 +44,18 @@ namespace eval ::textile::test {
       ::textile::convert "bq. This is a blockquote\nspanning lines"
    } -result "<blockquote><p>This is a blockquote<br/>spanning lines</p></blockquote>"
 
+   test footnote "footnote is correctly tagged" -body {
+      ::textile::convert "fn1. This is a footnote"
+   } -result "<p id=\"fn1\"><sup>1</sup> This is a footnote</p>"
+
+   test multiline-footnote "footnote spanning multiple lines" -body {
+      ::textile::convert "fn1. This is a footnote\nThis is line 2"
+   } -result "<p id=\"fn1\"><sup>1</sup> This is a footnote<br/>This is line 2</p>"
+
+   test footnote-reference "referencing a footnote generates a link" -body {
+      ::textile::convert "This references a footnote\[1]"
+   } -result "<p>This references a footnote<sup><a href=\"#fn1\">1</a></sup></p>"
+
    test emphasis "emphasis is applied to _ tag" -body {
       ::textile::convert "This is _emphasized_"
    } -result "<p>This is <em>emphasized</em></p>"
